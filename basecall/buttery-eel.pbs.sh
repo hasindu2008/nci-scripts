@@ -13,13 +13,16 @@
 
 MODEL=dna_r10.4.1_e8.2_400bps_sup.cfg
 # MODEL=dna_r10.4.1_e8.2_400bps_hac_prom.cfg
+# MODEL=dna_r9.4.1_450bps_sup.cfg
+# MODEL=dna_r9.4.1_450bps_hac_prom.cfg
+
 
 ###################################################################
 
 # Make sure to change:
 # 1. wv19 to your own project
 # 2. the name of the Guppy model
-# 3. optionally, if you want to use the A100 queue instead of the V100 queue, change gpuvolta to dgxa100 and change the number of CPUs to 64
+# 3. optionally, if you want to use the A100 GPU queue instead of the V100 queue, change "gpuvolta" to "dgxa100" and change the number of CPUs to 64 (dgxa100 requires at least 16 CPUs per GPU)
 
 # to run:
 # qsub -v MERGED_SLOW5=/path/to/reads.blow5,BASECALL_OUT=/path/to/out/dir ./buttery-eel.pbs.sh
@@ -41,8 +44,6 @@ module load /g/data/if89/apps/modulefiles/buttery-eel/0.3.1+guppy6.4.2
 
 ###################################################################
 
-PORT=5000
-
 # terminate script
 die() {
 	echo "$1" >&2
@@ -50,8 +51,21 @@ die() {
 	exit 1
 }
 
-guppy_basecaller --version || die "Could not find guppy_basecaller"
+#https://unix.stackexchange.com/questions/55913/whats-the-easiest-way-to-find-an-unused-local-port
+get_free_port() {
+	while :; do
+		for (( port = 5000 ; port <= 65000 ; port++ )); do
+			ss -lpna | grep -q ":$port " || break
+		done
+	done
+}
+
+PORT=$(get_free_port)
+test -z "${PORT}" && die "Could not find a free port"
+echo "Using port ${PORT}"
+
 ONT_GUPPY_PATH=$(which guppy_basecaller | sed "s/guppy\_basecaller$//")/
+${ONT_GUPPY_PATH}/guppy_basecaller --version || die "Could not find guppy_basecaller"
 
 test -d ${BASECALL_OUT} && die "Output directory ${BASECALL_OUT} already exists. Please delete it first or give an alternate location. Exiting."
 
@@ -60,6 +74,6 @@ test -e ${MERGED_SLOW5} || die "${MERGED_SLOW5} not found. Exiting."
 mkdir ${BASECALL_OUT} || die "Creating directory ${BASECALL_OUT} failed. Exiting."
 cd ${BASECALL_OUT} || die "${MERGED_SLOW5} not found. Exiting."
 
-/usr/bin/time -v  buttery-eel -i ${MERGED_SLOW5} -o ${BASECALL_OUT}/reads.fastq --guppy_bin ${ONT_GUPPY_PATH} --port ${PORT} --config ${MODEL} -x cuda:all --guppy_batchsize 20000 --max_queued_reads 20000 --slow5_threads 10 --slow5_batchsize 100 --procs 20 || die "basecalling failed"
+/usr/bin/time -v  buttery-eel -i ${MERGED_SLOW5} -o ${BASECALL_OUT}/reads.fastq --guppy_bin ${ONT_GUPPY_PATH} --port ${PORT} --use_tcp --config ${MODEL} -x cuda:all --guppy_batchsize 20000 --max_queued_reads 20000 --slow5_threads 10 --slow5_batchsize 100 --procs 20 || die "basecalling failed"
 
 echo "basecalling success"
