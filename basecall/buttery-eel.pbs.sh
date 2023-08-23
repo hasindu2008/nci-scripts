@@ -52,15 +52,16 @@ die() {
 }
 
 #https://unix.stackexchange.com/questions/55913/whats-the-easiest-way-to-find-an-unused-local-port
+PORT=5000
 get_free_port() {
-	while :; do
-		for (( port = 5000 ; port <= 65000 ; port++ )); do
-			ss -lpna | grep -q ":$port " || break
-		done
+	for port in $(seq 5000 65000); do
+		echo "trying port $port" >&2
+		PORT=$port
+		ss -lpna | grep -q ":$port " || break
 	done
 }
 
-PORT=$(get_free_port)
+get_free_port
 test -z "${PORT}" && die "Could not find a free port"
 echo "Using port ${PORT}"
 
