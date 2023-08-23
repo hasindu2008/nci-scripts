@@ -11,14 +11,15 @@
 
 ###################################################################
 
-ONT_GUPPY_PATH=/g/data/if89/apps/buttery-eel/0.3.1/ont-guppy-6.4.2/bin
-MODEL=dna_r10.4.1_e8.2_400bps_sup_prom.cfg
+MODEL=dna_r10.4.1_e8.2_400bps_sup.cfg
+# MODEL=dna_r10.4.1_e8.2_400bps_hac_prom.cfg
 
 ###################################################################
 
 # Make sure to change:
 # 1. wv19 to your own project
 # 2. the name of the Guppy model
+# 3. optionally, if you want to use the A100 queue instead of the V100 queue, change gpuvolta to dgxa100 and change the number of CPUs to 64
 
 # to run:
 # qsub -v MERGED_SLOW5=/path/to/reads.blow5,BASECALL_OUT=/path/to/out/dir ./buttery-eel.pbs.sh
@@ -36,7 +37,7 @@ usage() {
 # merged BLOW5
 [ -z "${MERGED_SLOW5}" ] && usage
 
-module load /g/data/if89/apps/modulefiles/buttery-eel/0.3.1
+module load /g/data/if89/apps/modulefiles/buttery-eel/0.3.1+guppy6.4.2
 
 ###################################################################
 
@@ -48,6 +49,9 @@ die() {
 	echo
 	exit 1
 }
+
+guppy_basecaller --version || die "Could not find guppy_basecaller"
+ONT_GUPPY_PATH=$(which guppy_basecaller | sed "s/guppy\_basecaller$//")/
 
 test -d ${BASECALL_OUT} && die "Output directory ${BASECALL_OUT} already exists. Please delete it first or give an alternate location. Exiting."
 
