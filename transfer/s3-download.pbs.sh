@@ -26,8 +26,8 @@ die() {
 
 module load /g/data/if89/apps/modulefiles/aws-cli/2.13.9
 
-aws s3 cp --no-sign-request s3://gtgseq/ont-r10-dna/NA24385/raw/PGXX22394_reads.blow5 ./  || die "Downloading failed. Exiting."
-aws s3 cp --no-sign-request s3://gtgseq/ont-r10-dna/NA24385/raw/PGXX22394_reads.blow5.idx ./  || die "Downloading failed. Exiting."
+aws s3 cp --no-sign-request s3://gtgseq/ont-r10-dna/NA24385/raw/PGXX22394_reads.blow5 .  || die "Downloading failed. Exiting."
+aws s3 cp --no-sign-request s3://gtgseq/ont-r10-dna/NA24385/raw/PGXX22394_reads.blow5.idx .  || die "Downloading failed. Exiting."
 
 echo "done"
 
