@@ -12,11 +12,11 @@
 ###################################################################
 
 # Change this to the model you want to use
-MODEL=dna_r10.4.1_e8.2_400bps_5khz_sup.cfg
-# MODEL=dna_r10.4.1_e8.2_400bps_sup.cfg
-# MODEL=dna_r10.4.1_e8.2_400bps_hac_prom.cfg
-# MODEL=dna_r9.4.1_450bps_sup.cfg
-# MODEL=dna_r9.4.1_450bps_hac_prom.cfg
+MODEL=dna_r10.4.1_e8.2_400bps_5khz_modbases_5mc_cg_sup_prom.cfg
+# MODEL=dna_r10.4.1_e8.2_400bps_modbases_5mc_cg_sup_prom.cfg
+# MODEL=dna_r10.4.1_e8.2_400bps_modbases_5mc_cg_hac_prom.cfg
+# MODEL=dna_r9.4.1_450bps_modbases_5mc_cg_sup_prom.cfg
+# MODEL=dna_r9.4.1_450bps_modbases_5mc_cg_hac_prom.cfg
 
 ###################################################################
 
@@ -76,6 +76,6 @@ test -e ${MERGED_SLOW5} || die "${MERGED_SLOW5} not found. Exiting."
 mkdir ${BASECALL_OUT} || die "Creating directory ${BASECALL_OUT} failed. Exiting."
 cd ${BASECALL_OUT} || die "${MERGED_SLOW5} not found. Exiting."
 
-/usr/bin/time -v  buttery-eel -i ${MERGED_SLOW5} -o ${BASECALL_OUT}/reads.fastq --guppy_bin ${ONT_GUPPY_PATH} --port ${PORT} --use_tcp --config ${MODEL} -x cuda:all --guppy_batchsize 20000 --max_queued_reads 20000 --slow5_threads 10 --slow5_batchsize 100 --procs 20 || die "basecalling failed"
+/usr/bin/time -v  buttery-eel -i ${MERGED_SLOW5} -o ${BASECALL_OUT}/reads.fastq --guppy_bin ${ONT_GUPPY_PATH} --port ${PORT} --use_tcp --config ${MODEL} -x cuda:all --guppy_batchsize 20000 --max_queued_reads 20000 --slow5_threads 10 --slow5_batchsize 100 --procs 20 --call_mods || die "basecalling failed"
 
 echo "basecalling success"
