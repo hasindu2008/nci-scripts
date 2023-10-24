@@ -1,19 +1,19 @@
 #!/bin/bash
-#PBS -P ox63
+#PBS -P wv19
 #PBS -N MINIMAP2_SAMTOOLS
 #PBS -q normal
 #PBS -l ncpus=16
 #PBS -l mem=64GB
 #PBS -l walltime=48:00:00
 #PBS -l wd
-#PBS -l storage=scratch/ox63+gdata/ox63
+#PBS -l storage=gdata/if89+scratch/wv19+gdata/wv19+gdata/ox63
 
 ###################################################################
 
 ###################################################################
 
 # Make sure to change:
-# 1. ox63 to your own project
+# 1. wv19 abd ox63 to your own projects
 
 # to run:
 # qsub -v REF=/path/to/ref.fa,FASTQ=/path/to/reads.fastq,OUT_DIR=/path/to/outdir ./minimap2_samtools.pbs.sh
