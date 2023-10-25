@@ -53,7 +53,7 @@ if [ -e ${BLOW5}.idx ]; then
 	echo "SLOW5 index already present, skipping it."
 	/usr/bin/time -v f5c index -t ${num_threads} ${FASTQ} --slow5 ${BLOW5} --skip-slow5-idx || die "index failed"
 else
-	/usr/bin/time -v f5c index -t ${num_threads} --slow5 ${BLOW5} || die "index failed"
+	/usr/bin/time -v f5c index -t ${num_threads} ${FASTQ} --slow5 ${BLOW5} || die "index failed"
 fi
 
 echo "f5c index success"
