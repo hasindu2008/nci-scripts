@@ -8,12 +8,14 @@ See the comments in the scripts to identify which variables you should change.
 
 ## S/BLOW5 Basecalling
 
-- [basecall/buttery-eel.pbs.sh](basecall/buttery-eel.pbs.sh) - Basecall a S/BLOW5 file using [buttery-eel](https://github.com/Psy-Fer/buttery-eel) wrapper for Guppy.
+- [basecall/buttery-eel-guppy.pbs.sh](basecall/buttery-eel-guppy.pbs.sh) - Basecall a S/BLOW5 file using [buttery-eel](https://github.com/Psy-Fer/buttery-eel) wrapper for Guppy.
+- [basecall/buttery-eel-dorado.pbs.sh](basecall/buttery-eel-dorado.pbs.sh) - Basecall a S/BLOW5 file using [buttery-eel](https://github.com/Psy-Fer/buttery-eel) wrapper for Dorado.
 - [basecall/slow5-dorado.pbs.sh](basecall/slow5-dorado.pbs.sh) - Basecall a S/BLOW5 file using [slow5-dorado](https://github.com/hiruna72/slow5-dorado/releases/), a fork of ONT's Dorado that supports S/BLOW5.
 
 ## S/BLOW5 Modification calling
 
 - [modcall/f5c-call-methylation.pbs.sh](modcall/f5c-call-methylation.pbs.sh) - Perform methylation calling of a S/BLOW5 file using [f5c](https://github.com/hasindu2008/f5c/), a GPU accelerated version of nanopolish. You must execute `f5c-index.pbs.sh` under the preparation section first.
+- [modcall/buttery-eel-guppy.pbs.sh](modcall/buttery-eel-guppy.pbs.sh) - Modification calling of a S/BLOW5 file using [buttery-eel](https://github.com/Psy-Fer/buttery-eel) wrapper for Guppy.
 
 ## Read Alignment
 
@@ -22,6 +24,7 @@ See the comments in the scripts to identify which variables you should change.
 ## Preparation
 
 - [prep/f5c-index.pbs.sh](prep/f5c-index.pbs.sh) - Perform f5c index (required before running f5c call-methylation or eventalign).
+- [prep/pod5-to-merged-blow5.pbs.sh](prep/pod5-to-merged-blow5.pbs.sh) - Converts a POD5 data set to a single merged BLOW5 file using [blue-crab](https://github.com/Psy-Fer/blue-crab) and [slow5tools](https://github.com/hasindu2008/slow5tools) 
 
 ## Data Transfer
 
