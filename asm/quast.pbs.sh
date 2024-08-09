@@ -8,6 +8,19 @@
 #PBS -l ncpus=16
 #PBS -l wd
 
+###################################################################
+
+###################################################################
+
+# Make sure to change:
+# 1. ox63 to your own project
+
+# to run:
+# qsub -v ASM=/path/to/asm.fasta,OUT_DIR=/path/to/dir ./quast.pbs.sh
+
+###################################################################
+
+
 usage() {
 	echo "Usage: qsub -v ASM=/path/to/asm.fasta,OUT_DIR=/path/to/dir ./quast.pbs.sh" >&2
 	echo

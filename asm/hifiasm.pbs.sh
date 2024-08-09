@@ -8,6 +8,18 @@
 #PBS -l ncpus=48
 #PBS -l wd
 
+###################################################################
+
+###################################################################
+
+# Make sure to change:
+# 1. ox63 to your own projects
+
+# to run:
+# qsub -v FASTQ=/path/to/reads.fastq,OUT_PREFIX=hg002 ./hifiasm.pbs.sh
+
+###################################################################
+
 usage() {
 	echo "Usage: qsub -v FASTQ=/path/to/reads.fastq,OUT_PREFIX=hg002 ./hifiasm.pbs.sh" >&2
 	echo

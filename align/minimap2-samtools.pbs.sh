@@ -13,7 +13,7 @@
 ###################################################################
 
 # Make sure to change:
-# 1. wv19 abd ox63 to your own projects
+# 1. wv19 and ox63 to your own projects
 
 # to run:
 # qsub -v REF=/path/to/ref.fa,FASTQ=/path/to/reads.fastq,OUT_DIR=/path/to/outdir ./minimap2_samtools.pbs.sh
