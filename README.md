@@ -1,10 +1,10 @@
 # nci-scripts
 
-PBS scripts for running nanopore genomics analyses on Australia's [NCI Gadi Supercomputer](https://nci.org.au/our-systems/hpc-systems).
+Example PBS scripts for running long read genomics analyses on Australia's [NCI Gadi Supercomputer](https://nci.org.au/our-systems/hpc-systems).
 
-These scripts use software installed under the [if89 project (Australian BioCommons Tools and Workflows project)](https://australianbiocommons.github.io/ables/if89/).  If you have an NCI account, simply join the if89 project using the [myNCI](https://my.nci.org.au/mancini/login?next=/mancini/) and start using these scripts with software already installed on Gadi through project if89.
+These scripts use software installed under the [if89 project (Australian BioCommons Tools and Workflows project)](https://australianbiocommons.github.io/ables/if89/).  With your NCI account, simply join the if89 project using the [myNCI](https://my.nci.org.au/mancini/login?next=/mancini/) and start using these scripts with software already installed on Gadi through project if89.
 
-See the comments in the scripts to identify which variables you should change.
+See the comments in the scripts to identify which variables you should change. These scripts are intentionally kept minimal as they are intended to serve as examples for you to quickly get started.
 
 ## Read Alignment
 
