@@ -37,11 +37,13 @@ die() {
 	exit 1
 }
 
-module load /g/data/if89/apps/modulefiles/quast/5.1.0rc1
+export MODULEPATH=$MODULEPATH:/g/data/if89/apps/modulefiles/
+module load quast/5.1.0rc1
 THREADS=${PBS_NCPUS}
 
 #########################################
 
+test -d ${OUT_DIR} && die "Output directory ${OUT_DIR} already exists. Please delete it first or give an alternate location. Exiting."
 
 ## run quast to evaluate assemblies
 quast.py -t ${THREADS} -o ${OUT_DIR} -l ${ASM} --large ${ASM} || die "quast failed"
