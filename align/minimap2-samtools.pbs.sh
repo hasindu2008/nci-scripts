@@ -56,7 +56,7 @@ test -e ${REF} || die "${REF} not found. Exiting."
 mkdir ${OUT_DIR} || die "Creating directory ${OUT_DIR} failed. Exiting."
 cd ${OUT_DIR} || die "${OUT_DIR} not found. Exiting."
 
-/usr/bin/time -v minimap2 -ax map-ont ${REF} ${FASTQ} -t 16 --secondary=no | samtools sort - -T ${OUT_DIR}/ -o ${OUT_DIR}/reads.bam || die "alignment failed"
-/usr/bin/time -v samtools index ${OUT_DIR}/reads.bam || die "index failed"
+/usr/bin/time -v minimap2 -ax map-ont ${REF} ${FASTQ} -t 16 --secondary=no | samtools sort - -T . -o reads.bam || die "alignment failed"
+/usr/bin/time -v samtools index reads.bam || die "index failed"
 
 echo "alignment success"
