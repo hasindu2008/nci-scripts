@@ -41,7 +41,7 @@ usage() {
 # merged BLOW5
 [ -z "${MERGED_SLOW5}" ] && usage
 
-module load /g/data/if89/apps/modulefiles/buttery-eel/0.4.2+guppy6.5.7
+module load /g/data/if89/apps/modulefiles/buttery-eel/0.4.2+dorado7.2.13
 
 ###################################################################
 
@@ -66,8 +66,8 @@ get_free_port
 test -z "${PORT}" && die "Could not find a free port"
 echo "Using port ${PORT}"
 
-ONT_GUPPY_PATH=$(which guppy_basecaller | sed "s/guppy\_basecaller$//")/
-${ONT_GUPPY_PATH}/guppy_basecaller --version || die "Could not find guppy_basecaller"
+ONT_DORADO_PATH=$(which dorado_basecall_server | sed "s/dorado\_basecall\_server$//")/
+${ONT_DORADO_PATH}/dorado_basecall_server --version || die "Could not find dorado_basecall_server"
 
 test -d ${BASECALL_OUT} && die "Output directory ${BASECALL_OUT} already exists. Please delete it first or give an alternate location. Exiting."
 
@@ -76,6 +76,6 @@ test -e ${MERGED_SLOW5} || die "${MERGED_SLOW5} not found. Exiting."
 mkdir ${BASECALL_OUT} || die "Creating directory ${BASECALL_OUT} failed. Exiting."
 cd ${BASECALL_OUT} || die "${MERGED_SLOW5} not found. Exiting."
 
-/usr/bin/time -v  buttery-eel -i ${MERGED_SLOW5} -o ${BASECALL_OUT}/reads.sam --guppy_bin ${ONT_GUPPY_PATH} --port ${PORT} --use_tcp --config ${MODEL} -x cuda:all --guppy_batchsize 20000 --max_queued_reads 20000 --slow5_threads 10 --slow5_batchsize 100 --procs 20 --call_mods || die "basecalling failed"
+/usr/bin/time -v  buttery-eel -i ${MERGED_SLOW5} -o ${BASECALL_OUT}/reads.sam --guppy_bin ${ONT_DORADO_PATH} --port ${PORT} --use_tcp --config ${MODEL} -x cuda:all --guppy_batchsize 20000 --max_queued_reads 20000 --slow5_threads 10 --slow5_batchsize 100 --procs 20 --call_mods || die "basecalling failed"
 
 echo "basecalling+modcalling success"

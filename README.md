@@ -25,6 +25,7 @@ See the comments in the scripts to identify which variables you should change. T
 
 - [modcall/f5c-call-methylation.pbs.sh](modcall/f5c-call-methylation.pbs.sh) - Perform methylation calling of a S/BLOW5 file using [f5c](https://github.com/hasindu2008/f5c/), a GPU accelerated version of nanopolish. You must execute `f5c-index.pbs.sh` under the preparation section first.
 - [modcall/buttery-eel-guppy.pbs.sh](modcall/buttery-eel-guppy.pbs.sh) - Modification calling of a S/BLOW5 file using [buttery-eel](https://github.com/Psy-Fer/buttery-eel) wrapper for Guppy.
+- [modcall/buttery-eel-dorado.pbs.sh](modcall/buttery-eel-dorado.pbs.sh) - Modification calling of a S/BLOW5 file using [buttery-eel](https://github.com/Psy-Fer/buttery-eel) wrapper for Dorado.
 
 
 ## Preparation
