@@ -12,11 +12,7 @@
 ###################################################################
 
 # Change this to the model you want to use
-MODEL=dna_r10.4.1_e8.2_400bps_5khz_modbases_5mc_cg_sup_prom.cfg
-# MODEL=dna_r10.4.1_e8.2_400bps_modbases_5mc_cg_sup_prom.cfg
-# MODEL=dna_r10.4.1_e8.2_400bps_modbases_5mc_cg_hac_prom.cfg
-# MODEL=dna_r9.4.1_450bps_modbases_5mc_cg_sup_prom.cfg
-# MODEL=dna_r9.4.1_450bps_modbases_5mc_cg_hac_prom.cfg
+MODEL=dna_r10.4.1_e8.2_400bps_5khz_modbases_5hmc_5mc_cg_sup_prom.cfg
 
 ###################################################################
 
