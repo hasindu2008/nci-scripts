@@ -1,5 +1,5 @@
 #!/bin/bash
-#PBS -P wv19
+#PBS -P ox63
 #PBS -N EEL
 #PBS -q gpuvolta
 #PBS -l ncpus=48
@@ -7,7 +7,7 @@
 #PBS -l mem=384GB
 #PBS -l walltime=48:00:00
 #PBS -l wd
-#PBS -l storage=gdata/if89+scratch/wv19+gdata/wv19
+#PBS -l storage=gdata/if89+scratch/wv19+gdata/wv19,gdata/ox63
 
 ###################################################################
 
@@ -26,12 +26,12 @@ MODEL=dna_r10.4.1_e8.2_400bps_5khz_sup.cfg
 # 3. optionally, if you want to use the A100 GPU queue instead of the V100 queue, change "gpuvolta" to "dgxa100" and change the number of CPUs to 64 (dgxa100 requires at least 16 CPUs per GPU)
 
 # to run:
-# qsub -v MERGED_SLOW5=/path/to/reads.blow5,BASECALL_OUT=/path/to/out/dir ./buttery-eel.pbs.sh
+# qsub -v MERGED_SLOW5=/path/to/reads.blow5,BASECALL_OUT=/path/to/out/dir ./buttery-eel-dorado.pbs.sh
 
 ###################################################################
 
 usage() {
-	echo "Usage: qsub -v MERGED_SLOW5=/g/data/wv19/public/hg2_prom_lsk114_subsubsample/reads.blow5,BASECALL_OUT=/scratch/wv19/hg1112/tmp/hg2_prom_lsk114_subsubsample/ ./buttery-eel.pbs.sh" >&2
+	echo "Usage: qsub -v MERGED_SLOW5=/g/data/wv19/public/hg2_prom_lsk114_subsubsample/reads.blow5,BASECALL_OUT=/scratch/wv19/hg1112/tmp/hg2_prom_lsk114_subsubsample/ ./buttery-eel-dorado.pbs.sh" >&2
 	echo
 	exit 1
 }
