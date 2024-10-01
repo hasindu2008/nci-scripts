@@ -7,7 +7,7 @@
 #PBS -l mem=384GB
 #PBS -l walltime=48:00:00
 #PBS -l wd
-#PBS -l storage=gdata/if89+scratch/wv19+gdata/wv19,gdata/ox63
+#PBS -l storage=gdata/if89+scratch/wv19+gdata/wv19+gdata/ox63
 
 ###################################################################
 
