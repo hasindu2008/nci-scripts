@@ -14,9 +14,9 @@
 # Change this to the model you want to use
 MODEL=dna_r10.4.1_e8.2_400bps_5khz_sup.cfg
 # MODEL=dna_r10.4.1_e8.2_400bps_sup.cfg
-# MODEL=dna_r10.4.1_e8.2_400bps_hac_prom.cfg
+# MODEL=dna_r10.4.1_e8.2_400bps_hac.cfg
 # MODEL=dna_r9.4.1_450bps_sup.cfg
-# MODEL=dna_r9.4.1_450bps_hac_prom.cfg
+# MODEL=dna_r9.4.1_450bps_hac.cfg
 
 ###################################################################
 
