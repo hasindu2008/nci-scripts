@@ -25,8 +25,8 @@ usage() {
 
 
 #change this to where you slow5tools module is
-module load /g/data/if89/apps/modulefiles/slow5tools/1.1.0
-module load /g/data/if89/apps/modulefiles/blue-crab/0.1.0
+module load /g/data/if89/apps/modulefiles/slow5tools/1.3.0
+module load /g/data/if89/apps/modulefiles/blue-crab/0.3.0
 SLOW5TOOLS=slow5tools
 BLUECRAB=blue-crab
 
