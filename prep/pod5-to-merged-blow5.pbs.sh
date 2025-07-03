@@ -25,8 +25,8 @@ usage() {
 
 
 #change this to where you slow5tools module is
-module load /g/data/if89/apps/modulefiles/slow5tools/1.1.0
-module load /g/data/if89/apps/modulefiles/blue-crab/0.1.0
+module load /g/data/if89/apps/modulefiles/slow5tools/1.3.0
+module load /g/data/if89/apps/modulefiles/blue-crab/0.3.0
 SLOW5TOOLS=slow5tools
 BLUECRAB=blue-crab
 
@@ -56,10 +56,13 @@ echo "Converting"
 $BLUECRAB p2s ${POD5_PATH} -d ${TEMP_DIR} -p ${PBS_NCPUS} || die "blue-crab p2s failed. Exiting."
 
 echo "Merging"
-$SLOW5TOOLS merge -t ${PBS_NCPUS} -o ${MERGED_SLOW5} ${TEMP_DIR} ||  die "slow5tools merge. Exiting."
+$SLOW5TOOLS merge -t ${PBS_NCPUS} -o ${MERGED_SLOW5} ${TEMP_DIR} ||  die "slow5tools merge failed. Exiting."
 
 echo "quickcheck"
-$SLOW5TOOLS quickcheck  ${MERGED_SLOW5} ||  die "slow5tools quickcheck. Exiting."
+$SLOW5TOOLS quickcheck  ${MERGED_SLOW5} ||  die "slow5tools quickcheck failed. Exiting."
+
+echo "indexing"
+$SLOW5TOOLS index ${MERGED_SLOW5} ||  die "slow5tools index failed. Exiting."
 
 echo "removing temporary files"
 rm -r ${TEMP_DIR}
