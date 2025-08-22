@@ -36,3 +36,7 @@ See the comments in the scripts to identify which variables you should change. T
 ## Data Transfer
 
 - [transfer/s3-download.pbs.sh](transfer/s3-download.pbs.sh) - Download an example BLOW5 file and an index from an S3 bucket using aws cli.
+
+## Misc
+
+- [misc/reduce-blow5.pbs.sh](misc/reduce-blow5.pbs.sh) - lossy compression a given BLOW5 file
