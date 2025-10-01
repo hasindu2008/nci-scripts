@@ -7,21 +7,22 @@
 #PBS -l mem=384GB
 #PBS -l walltime=48:00:00
 #PBS -l wd
-#PBS -l storage=gdata/if89+scratch/wv19+gdata/wv19
+#PBS -l storage=gdata/if89+scratch/wv19+gdata/wv19+scratch/ox63+gdata/ox63
 
 ###################################################################
 
+MODEL_DIR=/g/data/if89/apps/slow5-dorado/0.8.3/slow5-dorado/models/
+
 #R10.4.1 5KHz
-MODEL=/g/data/if89/apps/slow5-dorado/0.3.4/slow5-dorado/models/dna_r10.4.1_e8.2_400bps_sup@v4.2.0
-# MODEL=/g/data/if89/apps/slow5-dorado/0.3.4/slow5-dorado/models/dna_r10.4.1_e8.2_400bps_hac@v4.2.0
+MODEL=${MODEL_DIR}/dna_r10.4.1_e8.2_400bps_sup@v5.0.0
 
 #R10.4.1 4KHz
-# MODEL=/g/data/if89/apps/slow5-dorado/0.3.4/slow5-dorado/models/dna_r10.4.1_e8.2_400bps_sup@v4.1.0
-# MODEL=/g/data/if89/apps/slow5-dorado/0.3.4/slow5-dorado/models/dna_r10.4.1_e8.2_400bps_hac@v4.1.0
+# MODEL=${MODEL_DIR}/dna_r10.4.1_e8.2_400bps_sup@v4.1.0
+# MODEL=${MODEL_DIR}/dna_r10.4.1_e8.2_400bps_hac@v4.1.0
 
 #R9.4.1
-# MODEL=/g/data/if89/apps/slow5-dorado/0.3.4/slow5-dorado/models/dna_r9.4.1_e8_sup@v3.6
-# MODEL=/g/data/if89/apps/slow5-dorado/0.3.4/slow5-dorado/models/dna_r9.4.1_e8_hac@v3.3
+# MODEL=${MODEL_DIR}/dna_r9.4.1_e8_sup@v3.6
+# MODEL=${MODEL_DIR}/dna_r9.4.1_e8_hac@v3.3
 
 ###################################################################
 
@@ -45,7 +46,7 @@ usage() {
 #where the merged BLOW5 file is
 [ -z "${MERGED_SLOW5}" ] && usage
 
-module load /g/data/if89/apps/modulefiles/slow5-dorado/0.3.4
+module load /g/data/if89/apps/modulefiles/slow5-dorado/0.8.3
 num_threads=${PBS_NCPUS}
 
 # terminate script
@@ -60,8 +61,8 @@ test -d ${BASECALL_OUT} && die "Output directory ${BASECALL_OUT} already exists.
 test -e ${MERGED_SLOW5} || die "${MERGED_SLOW5} not found. Exiting."
 
 mkdir ${BASECALL_OUT} || die "Creating directory ${BASECALL_OUT} failed. Exiting."
-cd ${BASECALL_OUT} || die "${MERGED_SLOW5} not found. Exiting."
+cd ${BASECALL_OUT} || die "${BASECALL_OUT} not found. Exiting."
 
-/usr/bin/time -v  slow5-dorado basecaller ${MODEL} ${MERGED_SLOW5} --emit-fastq > ${BASECALL_OUT}/reads.fastq  -x cuda:all
+/usr/bin/time -v slow5-dorado basecaller ${MODEL} ${MERGED_SLOW5} --emit-fastq -x cuda:all > reads.fastq
 
 echo "basecalling success"

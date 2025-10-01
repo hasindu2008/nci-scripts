@@ -74,7 +74,7 @@ test -d ${BASECALL_OUT} && die "Output directory ${BASECALL_OUT} already exists.
 test -e ${MERGED_SLOW5} || die "${MERGED_SLOW5} not found. Exiting."
 
 mkdir ${BASECALL_OUT} || die "Creating directory ${BASECALL_OUT} failed. Exiting."
-cd ${BASECALL_OUT} || die "${MERGED_SLOW5} not found. Exiting."
+cd ${BASECALL_OUT} || die "${BASECALL_OUT} not found. Exiting."
 
 /usr/bin/time -v  buttery-eel -i ${MERGED_SLOW5} -o ${BASECALL_OUT}/reads.fastq -g ${ONT_DORADO_PATH} --port ${PORT} --use_tcp --config ${MODEL} -x cuda:all --slow5_threads 10 --slow5_batchsize 4000 --procs 20 || die "basecalling failed"
 

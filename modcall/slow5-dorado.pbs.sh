@@ -62,7 +62,7 @@ test -d ${BASECALL_OUT} && die "Output directory ${BASECALL_OUT} already exists.
 test -e ${MERGED_SLOW5} || die "${MERGED_SLOW5} not found. Exiting."
 
 mkdir ${BASECALL_OUT} || die "Creating directory ${BASECALL_OUT} failed. Exiting."
-cd ${BASECALL_OUT} || die "${MERGED_SLOW5} not found. Exiting."
+cd ${BASECALL_OUT} || die "${BASECALL_OUT} not found. Exiting."
 
 /usr/bin/time -v  slow5-dorado basecaller ${MODEL} ${MERGED_SLOW5} --modified-bases 5mCG_5hmCG --models-directory ${MODEL_DIR} > reads.bam  -x cuda:all || die "Basecalling failed. Exiting."
 

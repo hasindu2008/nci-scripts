@@ -1,5 +1,5 @@
 #!/bin/bash
-#PBS -P wv19
+#PBS -P ox63
 #PBS -N SLOW5-DORADO
 #PBS -q gpuvolta
 #PBS -l ncpus=48
@@ -11,10 +11,17 @@
 
 ###################################################################
 
-MODEL=/g/data/if89/apps/slow5-dorado/0.2.1/slow5-dorado/models/dna_r10.4.1_e8.2_400bps_sup@v4.1.0
-# MODEL=/g/data/if89/apps/slow5-dorado/0.2.1/slow5-dorado/models/dna_r10.4.1_e8.2_400bps_hac@v4.1.0
-# MODEL=/g/data/if89/apps/slow5-dorado/0.2.1/slow5-dorado/models/dna_r9.4.1_e8_sup@v3.3
-# MODEL=/g/data/if89/apps/slow5-dorado/0.2.1/slow5-dorado/models/dna_r9.4.1_e8_hac@v3.3
+#R10.4.1 5KHz
+MODEL=/g/data/if89/apps/slow5-dorado/0.3.4/slow5-dorado/models/dna_r10.4.1_e8.2_400bps_sup@v4.2.0
+# MODEL=/g/data/if89/apps/slow5-dorado/0.3.4/slow5-dorado/models/dna_r10.4.1_e8.2_400bps_hac@v4.2.0
+
+#R10.4.1 4KHz
+# MODEL=/g/data/if89/apps/slow5-dorado/0.3.4/slow5-dorado/models/dna_r10.4.1_e8.2_400bps_sup@v4.1.0
+# MODEL=/g/data/if89/apps/slow5-dorado/0.3.4/slow5-dorado/models/dna_r10.4.1_e8.2_400bps_hac@v4.1.0
+
+#R9.4.1
+# MODEL=/g/data/if89/apps/slow5-dorado/0.3.4/slow5-dorado/models/dna_r9.4.1_e8_sup@v3.6
+# MODEL=/g/data/if89/apps/slow5-dorado/0.3.4/slow5-dorado/models/dna_r9.4.1_e8_hac@v3.3
 
 ###################################################################
 
@@ -38,7 +45,7 @@ usage() {
 #where the merged BLOW5 file is
 [ -z "${MERGED_SLOW5}" ] && usage
 
-module load /g/data/if89/apps/modulefiles/slow5-dorado/0.2.1
+module load /g/data/if89/apps/modulefiles/slow5-dorado/0.3.4
 num_threads=${PBS_NCPUS}
 
 # terminate script
