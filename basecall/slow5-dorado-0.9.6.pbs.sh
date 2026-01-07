@@ -31,7 +31,7 @@ MODEL=${MODEL_DIR}/dna_r10.4.1_e8.2_400bps_sup@v5.0.0
 ###################################################################
 
 # Make sure to change:
-# 1. wv19 to your own project
+# 1. wv19 and ox63 to your own projects
 # 2. the name of the model
 # 3. optionally, you can select a different GPU queue instead of the default V100 queue.
 #     - if you want to use the H200 GPU queue, change "gpuvolta" to "gpuhopper"

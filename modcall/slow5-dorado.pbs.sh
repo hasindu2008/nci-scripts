@@ -7,7 +7,7 @@
 #PBS -l mem=384GB
 #PBS -l walltime=48:00:00
 #PBS -l wd
-#PBS -l storage=gdata/if89+scratch/wv19+gdata/wv19+scratch/ox63+gdata/ox63
+#PBS -l storage=gdata/if89+scratch/ox63+gdata/ox63
 
 ###################################################################
 
@@ -27,7 +27,7 @@ MODEL=${MODEL_DIR}/dna_r10.4.1_e8.2_400bps_sup@v5.2.0
 ###################################################################
 
 # Make sure to change:
-# 1. wv19 and ox63 to your own projects
+# 1. ox63 to your own project
 # 2. the name of the Model
 # 3. optionally, you can select a different GPU queue instead of the default V100 queue.
 #     - if you want to use the H200 GPU queue, change "gpuvolta" to "gpuhopper"
@@ -39,7 +39,7 @@ MODEL=${MODEL_DIR}/dna_r10.4.1_e8.2_400bps_sup@v5.2.0
 ###################################################################
 
 usage() {
-	echo "Usage: qsub -v MERGED_SLOW5=/g/data/ox63/slow5-testdata/hg2_prom_lsk114_5khz_subsubsample/PGXXXX230339_reads_20k.blow5,BASECALL_OUT=/scratch/wv19/hg1112/tmp/hg2_prom_lsk114_subsubsample/ ./slow5-dorado.pbs.sh" >&2
+	echo "Usage: qsub -v MERGED_SLOW5=/g/data/ox63/slow5-testdata/hg2_prom_lsk114_5khz_subsubsample/PGXXXX230339_reads_20k.blow5,BASECALL_OUT=/scratch/ox63/hg1112/tmp/hg2_prom_lsk114_5khz_subsubsample/ ./slow5-dorado.pbs.sh" >&2
 	echo
 	exit 1
 }
