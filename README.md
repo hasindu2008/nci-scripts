@@ -43,5 +43,5 @@ Please note that the tool versions in the scripts may not always be the latest, 
 - [transfer/s3-download.pbs.sh](transfer/s3-download.pbs.sh) - Download an example BLOW5 file and an index from an S3 bucket using aws cli.
 
 ## Misc
-
-- [misc/reduce-blow5.pbs.sh](misc/reduce-blow5.pbs.sh) - lossy compression a given BLOW5 file
+.
+- [misc/reduce-blow5.pbs.sh](misc/reduce-blow5.pbs.sh) - Lossy compression a given BLOW5 file
