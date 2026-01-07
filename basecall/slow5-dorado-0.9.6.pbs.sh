@@ -11,24 +11,28 @@
 
 ###################################################################
 
-# slow5-dorado v1.1.1
-# Note: Dorado v1.0.0 and above only supports R10.4.1 5KHz data and newer.
-#
-# if you want to use basecalling models for older data (DNA R10.4.1 4kHz, DNA R9.4.1, and RNA002)
-# please use the script slow5-dorado-0.9.6.pbs.sh instead.
-#
+# slow5-dorado v0.9.6
+# As stated by ONT, release 0.9.6 marks the final version of dorado (and consequently slow5-dorado),
+# that will support basecalling models for older data - DNA R10.4.1 4 kHz data, DNA R9.4.1, and RNA002
 
-MODEL_DIR=/g/data/if89/apps/slow5-dorado/1.1.1/slow5-dorado/models/
+MODEL_DIR=/g/data/if89/apps/slow5-dorado/0.9.6/slow5-dorado/models/
 
 #R10.4.1 5KHz
-MODEL=${MODEL_DIR}/dna_r10.4.1_e8.2_400bps_sup@v5.2.0
-# MODEL=${MODEL_DIR}/dna_r10.4.1_e8.2_400bps_hac@v5.2.0
+MODEL=${MODEL_DIR}/dna_r10.4.1_e8.2_400bps_sup@v5.0.0
+
+#R10.4.1 4KHz
+# MODEL=${MODEL_DIR}/dna_r10.4.1_e8.2_400bps_sup@v4.1.0
+# MODEL=${MODEL_DIR}/dna_r10.4.1_e8.2_400bps_hac@v4.1.0
+
+#R9.4.1
+# MODEL=${MODEL_DIR}/dna_r9.4.1_e8_sup@v3.6
+# MODEL=${MODEL_DIR}/dna_r9.4.1_e8_hac@v3.3
 
 ###################################################################
 
 # Make sure to change:
-# 1. wv19 and ox63 to your own projects
-# 2. the name of the Model
+# 1. wv19 to your own project
+# 2. the name of the model
 # 3. optionally, you can select a different GPU queue instead of the default V100 queue.
 #     - if you want to use the H200 GPU queue, change "gpuvolta" to "gpuhopper"
 #     - if you want to use the A100 GPU queue, change "gpuvolta" to "dgxa100" and the number of CPUs to 64 (dgxa100 requires at least 16 CPUs per GPU)
@@ -49,7 +53,7 @@ usage() {
 #where the merged BLOW5 file is
 [ -z "${MERGED_SLOW5}" ] && usage
 
-module load /g/data/if89/apps/modulefiles/slow5-dorado/1.1.1
+module load /g/data/if89/apps/modulefiles/slow5-dorado/0.9.6
 num_threads=${PBS_NCPUS}
 
 # terminate script
@@ -66,6 +70,6 @@ test -e ${MERGED_SLOW5} || die "${MERGED_SLOW5} not found. Exiting."
 mkdir ${BASECALL_OUT} || die "Creating directory ${BASECALL_OUT} failed. Exiting."
 cd ${BASECALL_OUT} || die "${BASECALL_OUT} not found. Exiting."
 
-/usr/bin/time -v  slow5-dorado basecaller ${MODEL} ${MERGED_SLOW5} --modified-bases 5mCG_5hmCG --models-directory ${MODEL_DIR} > reads.bam  -x cuda:all || die "Basecalling failed. Exiting."
+/usr/bin/time -v slow5-dorado basecaller ${MODEL} ${MERGED_SLOW5} --emit-fastq -x cuda:all > reads.fastq
 
 echo "basecalling success"
