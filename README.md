@@ -6,6 +6,8 @@ These scripts use software installed under the [if89 project (Australian BioComm
 
 See the comments in the scripts to identify which variables you should change. These scripts are intentionally kept minimal as they are intended to serve as examples for you to quickly get started.
 
+Please note that the tool versions in the scripts may not always be the latest, as I only update them periodically. You may update the scripts when newer tool versions are available.
+
 ## Read Alignment
 
 - [align/minimap2-samtools.pbs.sh](align/minimap2-samtools.pbs.sh) - Align a FASTQ file to a reference using Minimap2 and sort using samtools to create a BAM file (and the BAM index).
