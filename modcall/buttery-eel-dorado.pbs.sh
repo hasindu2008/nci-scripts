@@ -20,7 +20,7 @@
 
 # Change this to the model you want to use
 MODEL=dna_r10.4.1_e8.2_400bps_sup@v5.2.0
-MOD_MODEL=dna_r10.4.1_e8.2_400bps_sup@v5.2.0_5mCG_5hmCG
+MOD_MODEL=dna_r10.4.1_e8.2_400bps_sup@v5.2.0_5mCG_5hmCG@v2
 
 ###################################################################
 
