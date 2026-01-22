@@ -7,18 +7,21 @@
 #PBS -l mem=384GB
 #PBS -l walltime=48:00:00
 #PBS -l wd
-#PBS -l storage=gdata/if89+gdata/ox63+scratch/ox63
+#PBS -l storage=gdata/if89+scratch/wv19+gdata/wv19+gdata/ox63
 
 ###################################################################
 
 # Change this to the model you want to use
-MODEL=dna_r10.4.1_e8.2_400bps_sup@v5.2.0
-
+MODEL=dna_r10.4.1_e8.2_400bps_5khz_sup.cfg
+# MODEL=dna_r10.4.1_e8.2_400bps_sup.cfg
+# MODEL=dna_r10.4.1_e8.2_400bps_hac.cfg
+# MODEL=dna_r9.4.1_450bps_sup.cfg
+# MODEL=dna_r9.4.1_450bps_hac.cfg
 
 ###################################################################
 
 # Make sure to change:
-# 1. ox63 to your own project
+# 1. wv19 to your own project
 # 2. the name of the Guppy model
 # 3. optionally, if you want to use the A100 GPU queue instead of the V100 queue, change "gpuvolta" to "dgxa100" and change the number of CPUs to 64 (dgxa100 requires at least 16 CPUs per GPU)
 
@@ -28,7 +31,7 @@ MODEL=dna_r10.4.1_e8.2_400bps_sup@v5.2.0
 ###################################################################
 
 usage() {
-	echo "Usage: qsub -v MERGED_SLOW5=/g/data/ox63/slow5-testdata/hg2_prom_lsk114_5khz_subsubsample/PGXXXX230339_reads_20k.blow5,BASECALL_OUT=/scratch/ox63/hg1112/tmp/hg2_prom_lsk114_5khz_subsubsample/ ./buttery-eel-dorado.pbs.sh" >&2
+	echo "Usage: qsub -v MERGED_SLOW5=/g/data/wv19/public/hg2_prom_lsk114_subsubsample/reads.blow5,BASECALL_OUT=/scratch/wv19/hg1112/tmp/hg2_prom_lsk114_subsubsample/ ./buttery-eel-dorado.pbs.sh" >&2
 	echo
 	exit 1
 }
@@ -38,7 +41,7 @@ usage() {
 # merged BLOW5
 [ -z "${MERGED_SLOW5}" ] && usage
 
-module load /g/data/if89/apps/modulefiles/buttery-eel/0.8.1+dorado7.11.2
+module load /g/data/if89/apps/modulefiles/buttery-eel/0.5.1+dorado7.4.12
 
 ###################################################################
 

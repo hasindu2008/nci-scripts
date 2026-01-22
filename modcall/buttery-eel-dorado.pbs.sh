@@ -7,18 +7,19 @@
 #PBS -l mem=384GB
 #PBS -l walltime=48:00:00
 #PBS -l wd
-#PBS -l storage=gdata/if89+scratch/wv19+gdata/wv19+gdata/ox63
+#PBS -l storage=gdata/if89+gdata/ox63+scratch/ox63
 
 ###################################################################
 
 # Change this to the model you want to use
-MODEL=dna_r10.4.1_e8.2_400bps_5khz_modbases_5hmc_5mc_cg_sup.cfg
+MODEL=dna_r10.4.1_e8.2_400bps_sup@v5.2.0
+MOD_MODEL=dna_r10.4.1_e8.2_400bps_sup@v5.2.0_5mCG_5hmCG
 
 ###################################################################
 
 # Make sure to change:
-# 1. wv19 to your own project
-# 2. the name of the Guppy model
+# 1. ox63 to your own project
+# 2. the name of the models
 # 3. optionally, if you want to use the A100 GPU queue instead of the V100 queue, change "gpuvolta" to "dgxa100" and change the number of CPUs to 64 (dgxa100 requires at least 16 CPUs per GPU)
 
 # to run:
@@ -27,7 +28,7 @@ MODEL=dna_r10.4.1_e8.2_400bps_5khz_modbases_5hmc_5mc_cg_sup.cfg
 ###################################################################
 
 usage() {
-	echo "Usage: qsub -v MERGED_SLOW5=/g/data/wv19/public/hg2_prom_lsk114_subsubsample/reads.blow5,BASECALL_OUT=/scratch/wv19/hg1112/tmp/hg2_prom_lsk114_subsubsample/ ./buttery-eel-dorado.pbs.sh" >&2
+	echo "Usage: qsub -v MERGED_SLOW5=/g/data/ox63/slow5-testdata/hg2_prom_lsk114_5khz_subsubsample/PGXXXX230339_reads_20k.blow5,BASECALL_OUT=/scratch/ox63/hg1112/tmp/hg2_prom_lsk114_5khz_subsubsample/ ./buttery-eel-dorado.pbs.sh" >&2
 	echo
 	exit 1
 }
@@ -37,7 +38,7 @@ usage() {
 # merged BLOW5
 [ -z "${MERGED_SLOW5}" ] && usage
 
-module load /g/data/if89/apps/modulefiles/buttery-eel/0.5.1+dorado7.4.12
+module load /g/data/if89/apps/modulefiles/buttery-eel/0.8.1+dorado7.11.2
 
 ###################################################################
 
@@ -72,6 +73,6 @@ test -e ${MERGED_SLOW5} || die "${MERGED_SLOW5} not found. Exiting."
 mkdir ${BASECALL_OUT} || die "Creating directory ${BASECALL_OUT} failed. Exiting."
 cd ${BASECALL_OUT} || die "${BASECALL_OUT} not found. Exiting."
 
-/usr/bin/time -v  buttery-eel -i ${MERGED_SLOW5} -o ${BASECALL_OUT}/reads.sam -g ${ONT_DORADO_PATH} --port ${PORT} --use_tcp --config ${MODEL} -x cuda:all --slow5_threads 10 --slow5_batchsize 4000 --procs 20 --call_mods || die "basecalling failed"
+/usr/bin/time -v  buttery-eel -i ${MERGED_SLOW5} -o ${BASECALL_OUT}/reads.sam -g ${ONT_DORADO_PATH} --port ${PORT} --use_tcp --model ${MODEL} --modbase_models ${MOD_MODEL} -x cuda:all --slow5_threads 10 --slow5_batchsize 4000 --procs 20 --call_mods --max_batch_time 20000 || die "basecalling failed"
 
 echo "basecalling+modcalling success"
