@@ -11,6 +11,11 @@
 
 ###################################################################
 
+# buttery-eel 0.5.1 with ont-dorado-server 7.4.12.
+#
+# this script can be used for older data (DNA R10.4.1 4kHz, DNA R9.4.1, and RNA002),
+# as it is using an older ont-dorado-server version 7.4.12.
+
 # Change this to the model you want to use
 MODEL=dna_r10.4.1_e8.2_400bps_5khz_modbases_5hmc_5mc_cg_sup.cfg
 
