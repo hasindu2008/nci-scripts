@@ -16,7 +16,7 @@
 # Note: ont-dorado-server 7.11.2 and above only supports R10.4.1 5KHz data and newer.
 #
 # if you want to use basecalling models for older data (DNA R10.4.1 4kHz, DNA R9.4.1, and RNA002)
-# please use the older script under archived/buttery-eel-0.5.1+dorado7.4.12.pbs.sh instead.
+# please use the older script under archived/buttery-eel-0.7.2+dorado7.6.8.pbs.sh instead.
 
 # Change this to the model you want to use
 MODEL=dna_r10.4.1_e8.2_400bps_sup@v5.2.0
