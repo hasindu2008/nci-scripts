@@ -11,7 +11,7 @@
 
 ###################################################################
 
-# buttery-eel0.8.1 with ont-dorado-server 7.11.2.
+# buttery-eel 0.8.1 with ont-dorado-server 7.11.2.
 #
 # Note: ont-dorado-server 7.11.2 and above only supports R10.4.1 5KHz data and newer.
 #
@@ -81,6 +81,6 @@ test -e ${MERGED_SLOW5} || die "${MERGED_SLOW5} not found. Exiting."
 mkdir ${BASECALL_OUT} || die "Creating directory ${BASECALL_OUT} failed. Exiting."
 cd ${BASECALL_OUT} || die "${BASECALL_OUT} not found. Exiting."
 
-/usr/bin/time -v  buttery-eel -i ${MERGED_SLOW5} -o ${BASECALL_OUT}/reads.fastq -g ${ONT_DORADO_PATH} --port ${PORT} --use_tcp --config ${MODEL} -x cuda:all --slow5_threads 10 --slow5_batchsize 4000 --procs 20 || die "basecalling failed"
+/usr/bin/time -v  buttery-eel -i ${MERGED_SLOW5} -o ${BASECALL_OUT}/reads.fastq -g ${ONT_DORADO_PATH} --port ${PORT} --use_tcp --model ${MODEL} -x cuda:all --slow5_threads 10 --procs 20 --max_batch_time 20000 || die "basecalling failed"
 
 echo "basecalling success"

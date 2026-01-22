@@ -82,6 +82,6 @@ test -e ${MERGED_SLOW5} || die "${MERGED_SLOW5} not found. Exiting."
 mkdir ${BASECALL_OUT} || die "Creating directory ${BASECALL_OUT} failed. Exiting."
 cd ${BASECALL_OUT} || die "${BASECALL_OUT} not found. Exiting."
 
-/usr/bin/time -v  buttery-eel -i ${MERGED_SLOW5} -o ${BASECALL_OUT}/reads.sam -g ${ONT_DORADO_PATH} --port ${PORT} --use_tcp --model ${MODEL} --modbase_models ${MOD_MODEL} -x cuda:all --slow5_threads 10 --slow5_batchsize 4000 --procs 20 --call_mods --max_batch_time 20000 || die "basecalling failed"
+/usr/bin/time -v  buttery-eel -i ${MERGED_SLOW5} -o ${BASECALL_OUT}/reads.sam -g ${ONT_DORADO_PATH} --port ${PORT} --use_tcp --model ${MODEL} --modbase_models ${MOD_MODEL} -x cuda:all --slow5_threads 10 --procs 20 --call_mods --max_batch_time 20000 || die "basecalling failed"
 
 echo "basecalling+modcalling success"
