@@ -16,10 +16,10 @@
 #
 # if you want to use basecalling models for older data (DNA R10.4.1 4kHz, DNA R9.4.1, and RNA002)
 # please use the script slow5-dorado-0.9.6.pbs.sh instead.
-#
 
 MODEL_DIR=/g/data/if89/apps/slow5-dorado/1.1.1/slow5-dorado/models/
 
+# Change this to the model you want to use
 #R10.4.1 5KHz
 MODEL=${MODEL_DIR}/dna_r10.4.1_e8.2_400bps_sup@v5.2.0
 # MODEL=${MODEL_DIR}/dna_r10.4.1_e8.2_400bps_hac@v5.2.0

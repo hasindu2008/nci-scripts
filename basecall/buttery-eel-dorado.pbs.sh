@@ -11,16 +11,24 @@
 
 ###################################################################
 
+# buttery-eel0.8.1 with ont-dorado-server 7.11.2.
+#
+# Note: ont-dorado-server 7.11.2 and above only supports R10.4.1 5KHz data and newer.
+#
+# if you want to use basecalling models for older data (DNA R10.4.1 4kHz, DNA R9.4.1, and RNA002)
+# please use an older script under archived/ instead.
+
 # Change this to the model you want to use
 MODEL=dna_r10.4.1_e8.2_400bps_sup@v5.2.0
-
 
 ###################################################################
 
 # Make sure to change:
 # 1. ox63 to your own project
-# 2. the name of the Guppy model
-# 3. optionally, if you want to use the A100 GPU queue instead of the V100 queue, change "gpuvolta" to "dgxa100" and change the number of CPUs to 64 (dgxa100 requires at least 16 CPUs per GPU)
+# 2. the name of the model
+# 3. optionally, you can select a different GPU queue instead of the default V100 queue.
+#     - if you want to use the H200 GPU queue, change "gpuvolta" to "gpuhopper"
+#     - if you want to use the A100 GPU queue, change "gpuvolta" to "dgxa100" and the number of CPUs to 64 (dgxa100 requires at least 16 CPUs per GPU)
 
 # to run:
 # qsub -v MERGED_SLOW5=/path/to/reads.blow5,BASECALL_OUT=/path/to/out/dir ./buttery-eel-dorado.pbs.sh
