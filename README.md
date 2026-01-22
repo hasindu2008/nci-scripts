@@ -19,15 +19,16 @@ Please note that the tool versions in the scripts may not always be the latest, 
 
 ## S/BLOW5 Basecalling
 
-- [basecall/buttery-eel-dorado.pbs.sh](basecall/buttery-eel-dorado.pbs.sh) - Basecall a S/BLOW5 file using [buttery-eel](https://github.com/Psy-Fer/buttery-eel) wrapper for Dorado. For older data (DNA R10.4.1 4kHz, DNA R9.4.1, and RNA002), use an [older script](basecall/archived/buttery-eel-0.5.1+dorado7.4.12.pbs.sh). For legacy Guppy basecaller, use [basecall/buttery-eel-guppy.pbs.sh](basecall/buttery-eel-guppy.pbs.sh).
-- [basecall/slow5-dorado.pbs.sh](basecall/slow5-dorado.pbs.sh) - Basecall a S/BLOW5 file using [slow5-dorado](https://github.com/hiruna72/slow5-dorado/releases/) v1.x.x. slow5-dorado is a fork of ONT's Dorado that supports S/BLOW5. For  older data (DNA R10.4.1 4kHz, DNA R9.4.1, and RNA002), please use [basecall/slow5-dorado-0.9.6.pbs.sh](basecall/slow5-dorado-0.9.6.pbs.sh).
+- [basecall/slow5-dorado.pbs.sh](basecall/slow5-dorado.pbs.sh) - Basecall a S/BLOW5 file using [slow5-dorado](https://github.com/hiruna72/slow5-dorado/releases/). slow5-dorado is a fork of ONT's Dorado that supports S/BLOW5. This script is for slow5-dorado version 1.x.x and supports latest R10.4.1 5KHz data only. For older data (DNA R10.4.1 4kHz, DNA R9.4.1 and RNA002) please use [basecall/slow5-dorado-0.9.6.pbs.sh](basecall/slow5-dorado-0.9.6.pbs.sh).
+- [basecall/buttery-eel-dorado.pbs.sh](basecall/buttery-eel-dorado.pbs.sh) - Basecall a S/BLOW5 file using [buttery-eel](https://github.com/Psy-Fer/buttery-eel) wrapper for Dorado. For older data (DNA R10.4.1 4kHz, DNA R9.4.1, and RNA002), use an [older script](basecall/archived/buttery-eel-0.5.1+dorado7.4.12.pbs.sh). For legacy Guppy basecaller, use [basecall/buttery-eel-guppy.pbs.sh](modcall/buttery-eel-guppy.pbs.sh).
+
 
 ## S/BLOW5 Modification calling
 
 - [modcall/f5c-call-methylation.pbs.sh](modcall/f5c-call-methylation.pbs.sh) - Perform methylation calling of a S/BLOW5 file using [f5c](https://github.com/hasindu2008/f5c/), a GPU accelerated version of nanopolish. You must execute `f5c-index.pbs.sh` under the preparation section first.
-- [modcall/buttery-eel-dorado.pbs.sh](modcall/buttery-eel-dorado.pbs.sh) - Modification calling of a S/BLOW5 file using [buttery-eel](https://github.com/Psy-Fer/buttery-eel) wrapper for Dorado. For older data (DNA R10.4.1 4kHz, DNA R9.4.1, and RNA002), use an [older script](modcall/archived/buttery-eel-0.5.1+dorado7.4.12.pbs.sh). For legacy Guppy basecaller, use [modcall/buttery-eel-guppy.pbs.sh](modcall/buttery-eel-guppy.pbs.sh).
-- [modcall/slow5-dorado.pbs.sh](modcall/slow5-dorado.pbs.sh) - Modification calling of a S/BLOW5 file using [slow5-dorado](https://github.com/hiruna72/slow5-dorado/releases/) v1.x.x. slow5-dorado is a fork of ONT's Dorado that supports S/BLOW5.  For  older data (DNA R10.4.1 4kHz, DNA R9.4.1, and RNA002), please use [modcall/slow5-dorado-0.9.6.pbs.sh](modcall/slow5-dorado-0.9.6.pbs.sh).
+- [modcall/slow5-dorado.pbs.sh](modcall/slow5-dorado.pbs.sh) - Modification calling of a S/BLOW5 file using [slow5-dorado](https://github.com/hiruna72/slow5-dorado/releases/). slow5-dorado is a fork of ONT's Dorado that supports S/BLOW5. This script is for slow5-dorado version 1.x.x and supports latest R10.4.1 5KHz data only. For older data (DNA R10.4.1 4kHz, DNA R9.4.1 and RNA002) please use  [modcall/slow5-dorado-0.9.6.pbs.sh](modcall/slow5-dorado-0.9.6.pbs.sh)
 - [modcall/minimod.pbs.sh](modcall/minimod.pbs.sh) - Extract modification frequencies from a BAM file using [minimod](https://github.com/warp9seq/minimod).
+- [modcall/buttery-eel-dorado.pbs.sh](modcall/buttery-eel-dorado.pbs.sh) - Modification calling of a S/BLOW5 file using [buttery-eel](https://github.com/Psy-Fer/buttery-eel) wrapper for Dorado. For older data (DNA R10.4.1 4kHz, DNA R9.4.1, and RNA002), use an [older script](modcall/archived/buttery-eel-0.5.1+dorado7.4.12.pbs.sh). For legacy Guppy basecaller, use [modcall/buttery-eel-guppy.pbs.sh](modcall/buttery-eel-guppy.pbs.sh).
 
 ## Preparation
 
@@ -39,5 +40,5 @@ Please note that the tool versions in the scripts may not always be the latest, 
 - [transfer/s3-download.pbs.sh](transfer/s3-download.pbs.sh) - Download an example BLOW5 file and an index from an S3 bucket using aws cli.
 
 ## Misc
-
-- [misc/reduce-blow5.pbs.sh](misc/reduce-blow5.pbs.sh) - lossy compression a given BLOW5 file
+.
+- [misc/reduce-blow5.pbs.sh](misc/reduce-blow5.pbs.sh) - Lossy compression a given BLOW5 file
