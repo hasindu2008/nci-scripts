@@ -54,6 +54,6 @@ test -e ${REF} || die "${REF} not found. Exiting."
 mkdir ${OUT_DIR} || die "Creating directory ${OUT_DIR} failed. Exiting."
 cd ${OUT_DIR} || die "${OUT_DIR} not found. Exiting."
 
-/usr/bin/time -v minimod freq ${REF} ${BAM} -t 16 -o ${OUT_DIR}/freq.tsv || die "minimod freq failed."
+/usr/bin/time -v minimod freq ${REF} ${BAM} -t 16 -o freq.tsv || die "minimod freq failed."
 
-echo "alignment success"
+echo "minimod success"
